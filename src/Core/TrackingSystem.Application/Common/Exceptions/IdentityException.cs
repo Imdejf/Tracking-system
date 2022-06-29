@@ -1,7 +1,7 @@
-﻿using JustCommmerce.Application.Models;
-using JustCommmerce.Shared.Abstract;
+﻿using TrackingSystem.Application.Models;
+using TrackingSystem.Shared.Abstract;
 
-namespace JustCommmerce.Application.Common.Exceptions
+namespace TrackingSystem.Application.Common.Exceptions
 {
     public sealed class IdentityException : BaseAppException
     {

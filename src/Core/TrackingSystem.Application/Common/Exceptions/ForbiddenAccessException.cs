@@ -1,4 +1,4 @@
-﻿namespace JustCommmerce.Application.Common.Exceptions
+﻿namespace TrackingSystem.Application.Common.Exceptions
 {
     public class ForbiddenAccessException : Exception
     {
