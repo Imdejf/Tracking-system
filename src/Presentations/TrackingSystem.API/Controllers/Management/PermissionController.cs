@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using TrackingSystem.Shared.Abstract;
 using TrackingSystem.Shared.Attributes;
+using TrackingSystem.Shared.Enums;
 using TrackingSystem.Shared.Enums.Permissions;
 using TrackingSystem.Shared.Models;
 
-namespace JustCommerce.Api.Controllers.ManagementController
+namespace TrackingSystem.Api.Controllers.ManagementController
 {
     /// <summary>
     /// Controller responsible for routing Permissions domain requests
