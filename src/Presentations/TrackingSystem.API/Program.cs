@@ -1,17 +1,21 @@
-var builder = WebApplication.CreateBuilder(args);
+using TrackingSystem.Shared.Configurations;
 
-// Add services to the container.
+public class Startup
+{
+    private IConfiguration _Configuration { get; }
+    private bool _IsForTests { get; init; }
+    private JwtServiceConfig _JwtServiceConfig { get; init; }
 
-builder.Services.AddControllers();
+    public Startup()
+    {
 
-var app = builder.Build();
+    }
 
-// Configure the HTTP request pipeline.
+    public void ConfigureServices(IServiceCollection services)
+    {
+    }
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+    }
+}

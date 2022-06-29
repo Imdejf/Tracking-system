@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using TrackingSystem.Shared.Services.Implementations.JwtService;
+using TrackingSystem.Shared.Services.Interfaces.JwtService;
 
 namespace TrackingSystem.Shared.DependencyInjection
 {
