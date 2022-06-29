@@ -1,0 +1,7 @@
+﻿.vs
+src/Core/TrackingSystem.Application/obj
+src/Core/TrackingSystem.Domain/obj
+src/Infrastructure/TrackingSystem.Infrastructure/obj
+src/Infrastructure/TrackingSystem.Persistence/obj
+src/Presentations/TrackingSystem.API/obj
+src/Shared/TrackingSystem.Shared/obj
