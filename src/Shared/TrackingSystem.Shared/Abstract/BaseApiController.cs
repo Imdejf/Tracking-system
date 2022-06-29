@@ -13,4 +13,3 @@ namespace TrackingSystem.Shared.Abstract
         protected ISender Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<ISender>();
     }
 }
-}
