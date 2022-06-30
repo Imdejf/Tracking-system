@@ -12,11 +12,8 @@ namespace TrackingSystem.Shared.Maps
                 System.Array.Empty<PermissionObject>()
             },
             {
-                Profile.Accountant,
-                new PermissionObject[]
-                {
-                 
-                }
+                Profile.User,
+                System.Array.Empty<PermissionObject>()
             },
             {
                 Profile.Boss,
@@ -25,49 +22,6 @@ namespace TrackingSystem.Shared.Maps
 
                 }
             },
-            {
-                Profile.DeliveryManager,
-                new PermissionObject[]
-                {
-
-                }
-            },
-            {
-                Profile.DigitalManager,
-                Array.Empty<PermissionObject>()
-            },
-            {
-                Profile.PhysicalManager,
-                Array.Empty<PermissionObject>()
-            },
-            {
-                Profile.PackageManager,
-                Array.Empty<PermissionObject>()
-            },
-            {
-                Profile.SettlementManager,
-                Array.Empty<PermissionObject>()
-            },
-            {
-                Profile.MerchManager,
-                Array.Empty<PermissionObject>()
-            },
-            {
-                Profile.Marketing,
-                Array.Empty<PermissionObject>()
-            },
-            {
-                Profile.LicensorManager,
-                Array.Empty<PermissionObject>()
-            },
-            {
-                Profile.NewUser,
-                Array.Empty<PermissionObject>()
-            },
-            {
-                Profile.FullUser,
-                Array.Empty<PermissionObject>()
-            }
         };
 
         public static IEnumerable<PermissionObject> GetProfilePermissions(Profile profile) => _Permissions[profile];

@@ -1,12 +1,7 @@
-﻿using TrackingSystem.Shared.Enums;
-using TrackingSystem.Shared.Services.Interfaces.Permission;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using TrackingSystem.Shared.Enums;
+using TrackingSystem.Shared.Services.Interfaces.Permission;
 
 namespace TrackingSystem.Shared.Services.Implementations.PermissionMapper
 {

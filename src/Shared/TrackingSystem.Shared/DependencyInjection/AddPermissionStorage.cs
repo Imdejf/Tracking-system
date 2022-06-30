@@ -1,9 +1,8 @@
-﻿using TrackingSystem.Shared.MediatorPipelineBehaviours;
+﻿using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using TrackingSystem.Shared.MediatorPipelineBehaviours;
 using TrackingSystem.Shared.Services.Implementations.PermissionMapper;
 using TrackingSystem.Shared.Services.Interfaces.Permission;
-using TrackingSystem.Shared.Services.Interfaces.Permission;
-using MediatR;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace TrackingSystem.Shared.DependencyInjection
 {

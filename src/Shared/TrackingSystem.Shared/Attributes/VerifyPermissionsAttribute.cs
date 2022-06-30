@@ -2,6 +2,7 @@
 using TrackingSystem.Shared.Services.Implementations.PermissionMapper;
 using TrackingSystem.Shared.Services.Interfaces.Permission;
 using Microsoft.AspNetCore.Mvc.Filters;
+using TrackingSystem.Shared.Enums.Permissions;
 
 namespace TrackingSystem.Shared.Attributes
 {
