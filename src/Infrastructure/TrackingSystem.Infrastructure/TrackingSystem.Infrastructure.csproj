@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -9,15 +9,28 @@
 
   <ItemGroup>
 	  <PackageReference Include="CsvHelper" Version="27.2.1" />
-	  <PackageReference Include="HtmlRenderer.PdfSharp" Version="1.5.0.5" />
+	  <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
 	  <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
 	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-	  <PackageReference Include="PdfSharp" Version="1.32.3057" />
 	  <PackageReference Include="RawRabbit" Version="2.0.0-rc5" />
 	  <PackageReference Include="RawRabbit.DependencyInjection.ServiceCollection" Version="2.0.0-rc5" />
 	  <PackageReference Include="RawRabbit.Operations.Publish" Version="2.0.0-rc5" />
 	  <PackageReference Include="RawRabbit.Operations.Subscribe" Version="2.0.0-rc5" />
 	  <PackageReference Include="RawRabbit.vNext" Version="2.0.0-beta1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\TrackingSystem.Application\TrackingSystem.Application.csproj" />
+    <ProjectReference Include="..\TrackingSystem.Persistence\TrackingSystem.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DataSharp.EmailSender">
+      <HintPath>..\..\..\..\JustCommerce\JustCommerce.Backend\src\JustCommerce.Infrastructure\DLL\DataSharp.EmailSender.dll</HintPath>
+    </Reference>
+    <Reference Include="DataSharp.FtpFileManagement">
+      <HintPath>..\..\..\..\JustCommerce\JustCommerce.Backend\src\JustCommerce.Infrastructure\DLL\DataSharp.FtpFileManagement.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

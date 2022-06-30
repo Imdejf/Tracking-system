@@ -34,7 +34,7 @@ namespace TrackingSystem.Application.Features.CommonFeatures.AuthFeatures.Query
                     throw new IdentityException($"User with Email {request.Email} has already confirmed his email");
                 }
                 var emailConfiramtionToken = await _TokenGenerator.GenerateEmailConfirmationTokenAsync(currentUser, cancellationToken);
-                await _EmailSender.SendEmailConfirmationEmailAsync(currentUser.Email, emailConfiramtionToken, currentUser.Id, request.ShopId,Domain.Enums.EmailType.ConfirmAccount ,cancellationToken);
+                await _EmailSender.SendEmailConfirmationEmailAsync(currentUser.Email, emailConfiramtionToken, currentUser.Id, cancellationToken);
 
                 return Unit.Value;
             }

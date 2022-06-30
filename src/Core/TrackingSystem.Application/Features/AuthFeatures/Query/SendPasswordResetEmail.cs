@@ -30,7 +30,7 @@ namespace TrackingSystem.Application.Features.CommonFeatures.AuthFeatures.Query
                 }
 
                 var emailConfiramtionToken = await _TokenGenerator.GeneratePasswordResetTokenAsync(currentUser, cancellationToken);
-                await _EmailSender.SendPasswordResetEmailAsync(currentUser.Email, emailConfiramtionToken, currentUser.Id, request.ShopId,Domain.Enums.EmailType.ResetPassword, cancellationToken);
+                await _EmailSender.SendPasswordResetEmailAsync(currentUser.Email, emailConfiramtionToken, currentUser.Id, cancellationToken);
 
                 return Unit.Value;
             }

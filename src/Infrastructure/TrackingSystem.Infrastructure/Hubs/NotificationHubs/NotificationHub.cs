@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
+using TrackingSystem.Application.Common.Interfaces.CommonServices;
 
 namespace TrackingSystem.Infrastructure.Hubs.NotificationHubs
 {

@@ -1,4 +1,5 @@
-﻿using TrackingSystem.Application.Models;
+﻿using TrackingSystem.Application.Common.DTOs;
+using TrackingSystem.Application.Models;
 
 namespace TrackingSystem.Application.Common.Factories.ApplicationModelsFactories
 {

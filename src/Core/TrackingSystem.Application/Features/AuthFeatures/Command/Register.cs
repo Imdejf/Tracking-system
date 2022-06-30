@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 using Hangfire;
-using TrackingSystem.Application.Common.DataAccess.Repository;
+using TrackingSystem.Application.Common.Interfaces;
 using TrackingSystem.Application.Common.Exceptions;
 using TrackingSystem.Application.Common.Extension;
-using TrackingSystem.Application.Common.Factories.EntitiesFactories;
+using TrackingSystem.Application.Common.Factories.EntitiesFactories.User;
 using TrackingSystem.Application.Common.Interfaces;
 using TrackingSystem.Application.Common.Interfaces.DataAccess.Service;
 using TrackingSystem.Domain.Entities.Identity;
@@ -17,8 +17,7 @@ namespace TrackingSystem.Application.Features.CommonFeatures.AuthFeatures.Comman
     public static class Register
     {
         public sealed record Command(string Login, string Email, string Password, string PasswordCopy, string FirstName, string LastName,
-                                     string? CompanyName, string? Nip, string Province, string Street, string PhoneNumber,
-                                     UserRegisterSource RegisterSource, Guid ShopId, Profile Profile) : IRequestWrapper<UserEntity>;
+                                     string PhoneNumber, UserRegisterSource RegisterSource, Profile Profile) : IRequestWrapper<UserEntity>;
 
         public sealed class Handler : IRequestHandlerWrapper<Command, UserEntity>
         {
@@ -60,7 +59,7 @@ namespace TrackingSystem.Application.Features.CommonFeatures.AuthFeatures.Comman
                 var emailConfirmationToken = await _tokenGenerator.GenerateEmailConfirmationTokenAsync(registeredUser, cancellationToken);
 
 
-                BackgroundJob.Enqueue(() => _emailSender.SendEmailConfirmationEmailAsync(registeredUser.Email, emailConfirmationToken, registeredUser.Id, request.ShopId, EmailType.ConfirmAccount, cancellationToken));
+               await _emailSender.SendEmailConfirmationEmailAsync(registeredUser.Email, emailConfirmationToken, registeredUser.Id, cancellationToken);
 
                 return registeredUser;
             }

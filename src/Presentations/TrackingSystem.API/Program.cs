@@ -1,21 +1,19 @@
-using TrackingSystem.Shared.Configurations;
+using TrackingSystem.API;
 
-public class Startup
+namespace TrackingSystem.Api
 {
-    private IConfiguration _Configuration { get; }
-    private bool _IsForTests { get; init; }
-    private JwtServiceConfig _JwtServiceConfig { get; init; }
-
-    public Startup()
+    public class Program
     {
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
 
-    }
-
-    public void ConfigureServices(IServiceCollection services)
-    {
-    }
-
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }
