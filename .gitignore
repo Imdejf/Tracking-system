@@ -5,3 +5,9 @@ src/Infrastructure/TrackingSystem.Infrastructure/obj
 src/Infrastructure/TrackingSystem.Persistence/obj
 src/Presentations/TrackingSystem.API/obj
 src/Shared/TrackingSystem.Shared/obj
+src/Shared/TrackingSystem.Shared/bin
+src/Presentations/TrackingSystem.API/bin
+src/Infrastructure/TrackingSystem.Infrastructure/bin
+src/Core/TrackingSystem.Domain/bin
+src/Core/TrackingSystem.Application/bin
+src/Infrastructure/TrackingSystem.Persistence/bin
