@@ -68,7 +68,7 @@ namespace TrackingSystem.Shared.DependencyInjection
         public static IApplicationBuilder UseSwaggerOpenAPI(this IApplicationBuilder app, IWebHostEnvironment env)
         {
             var callingAssemblyName = Assembly.GetCallingAssembly().GetName().Name;
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || env.IsProduction())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("v1/swagger.json", $"{callingAssemblyName} v1"));

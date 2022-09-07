@@ -1,4 +1,5 @@
-﻿using TrackingSystem.Application;
+﻿using Hangfire;
+using TrackingSystem.Application;
 using TrackingSystem.Infrastructure.DependencyInjection;
 using TrackingSystem.Persistence.DependencyInjection;
 using TrackingSystem.Shared.Configurations;
@@ -29,7 +30,7 @@ namespace TrackingSystem.API
             services.AddAppServices(_Configuration);
             services.AddPersistenceService(_Configuration);
             services.AddPermissionsStorage();
-            //services.AddHangfire(_Configuration.GetConnectionString("DefaultConnection"));
+            services.AddHangfire(_Configuration.GetConnectionString("DefaultConnection"));
 
             services.AddSwaggerDocumentation();
             services.AddFluentValidators(typeof(ApplicationAssemblyEntryPoint).Assembly);
@@ -51,6 +52,8 @@ namespace TrackingSystem.API
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -59,6 +62,8 @@ namespace TrackingSystem.API
             app.UseSwaggerOpenAPI(env);
 
             app.UseJwtAuthorization();
+
+            app.UseHangfireDashboard();
 
             app.UseRouting();
 
