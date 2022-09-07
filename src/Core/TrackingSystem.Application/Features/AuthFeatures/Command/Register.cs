@@ -59,7 +59,7 @@ namespace TrackingSystem.Application.Features.CommonFeatures.AuthFeatures.Comman
                 var emailConfirmationToken = await _tokenGenerator.GenerateEmailConfirmationTokenAsync(registeredUser, cancellationToken);
 
 
-               await _emailSender.SendEmailConfirmationEmailAsync(registeredUser.Email, emailConfirmationToken, registeredUser.Id, cancellationToken);
+                BackgroundJob.Enqueue(() => _emailSender.SendEmailConfirmationEmailAsync(registeredUser.Email, emailConfirmationToken, registeredUser.Id, cancellationToken));
 
                 return registeredUser;
             }

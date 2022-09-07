@@ -9,7 +9,7 @@ namespace TrackingSystem.Application.Features.CommonFeatures.AuthFeatures.Query
 {
     public static class ResendEmailConfirmationEmail
     {
-        public sealed record Query(string Email, Guid ShopId) : IRequestWrapper<Unit>;
+        public sealed record Query(string Email) : IRequestWrapper<Unit>;
         public sealed class Handler : IRequestHandler<Query,Unit>
         {
             private readonly IUserManager _UserManager;
