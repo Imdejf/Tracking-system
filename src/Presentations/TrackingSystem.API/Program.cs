@@ -14,6 +14,7 @@ namespace TrackingSystem.Api
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
                 });
     }
 }

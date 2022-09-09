@@ -15,7 +15,10 @@ namespace TrackingSystem.Application.Common.Factories.DtoFactories
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
                 Id = entity.Id,
+                Name = entity.Name,
+                FilePath = entity.FilePath,
                 PhoneNumber = entity.PhoneNumber,
+                Profile = entity.ProfileType,
                 Permissions = entity.UserPermissions?.GroupBy(c => c.PermissionDomainName).ToDictionary(c => c.Key, c => c.Select(a => a.PermissionFlagValue)),
             };
         }

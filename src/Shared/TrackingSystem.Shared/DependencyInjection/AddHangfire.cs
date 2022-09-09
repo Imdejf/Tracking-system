@@ -1,4 +1,5 @@
 ﻿using Hangfire;
+using Hangfire.MySql;
 using Hangfire.SqlServer;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,16 +14,24 @@ namespace TrackingSystem.Shared.DependencyInjection
                 .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
                 .UseSimpleAssemblyNameTypeSerializer()
                 .UseRecommendedSerializerSettings()
-                .UseSqlServerStorage(connectionString, new SqlServerStorageOptions
-                {
-                    CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-                    SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
-                    QueuePollInterval = TimeSpan.Zero,
-                    UseRecommendedIsolationLevel = true,
-                    DisableGlobalLocks = true
-                }));
+                .UseStorage(
+                    new MySqlStorage(
+                        connectionString,
+                        new MySqlStorageOptions
+                        {
+                            QueuePollInterval = TimeSpan.FromSeconds(10),
+                            JobExpirationCheckInterval = TimeSpan.FromHours(1),
+                            CountersAggregateInterval = TimeSpan.FromMinutes(5),
+                            PrepareSchemaIfNecessary = true,
+                            DashboardJobListLimit = 25000,
+                            TransactionTimeout = TimeSpan.FromMinutes(1),
+                            TablesPrefix = "Hangfire",
+                        }
+                    )
+                ));
 
-            services.AddHangfireServer();
+            // Add the processing server as IHostedService
+            services.AddHangfireServer(options => options.WorkerCount = 1);
 
             return services;
         }

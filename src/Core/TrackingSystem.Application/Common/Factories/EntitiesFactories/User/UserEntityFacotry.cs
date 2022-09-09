@@ -14,9 +14,9 @@ namespace TrackingSystem.Application.Common.Factories.EntitiesFactories.User
                 LastName = command.LastName,
                 PhoneNumber = command.PhoneNumber,
                 EmailConfirmed = false,
-                RegisterSource = command.RegisterSource,
                 UserName = command.Login,
                 CreatedDate = DateTime.Now,
+                Name = command.FirstName + command.LastName,
             };
         }
     }

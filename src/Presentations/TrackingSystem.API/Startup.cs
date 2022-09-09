@@ -30,7 +30,7 @@ namespace TrackingSystem.API
             services.AddAppServices(_Configuration);
             services.AddPersistenceService(_Configuration);
             services.AddPermissionsStorage();
-            services.AddHangfire(_Configuration.GetConnectionString("DefaultConnection"));
+            services.AddHangfire(_Configuration.GetConnectionString("Hangfire"));
 
             services.AddSwaggerDocumentation();
             services.AddFluentValidators(typeof(ApplicationAssemblyEntryPoint).Assembly);
@@ -38,7 +38,7 @@ namespace TrackingSystem.API
 
             if (_IsForTests)
             {
-                services.AddInMemoryAuthDbContext(System.Guid.NewGuid().ToString());
+                services.AddInMemoryDbContext(System.Guid.NewGuid().ToString());
             }
             else
             {
@@ -63,7 +63,7 @@ namespace TrackingSystem.API
 
             app.UseJwtAuthorization();
 
-            app.UseHangfireDashboard();
+            app.UseHangfireDashboard("/jobs");
 
             app.UseRouting();
 

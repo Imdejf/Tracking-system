@@ -14,6 +14,7 @@ namespace TrackingSystem.Application.Common.Factories.ApplicationModelsFactories
                 LastName = dto.LastName,
                 UserName = dto.UserName,
                 PermissionsList = dto.Permissions,
+                
                 Id = dto.Id
             };
         }

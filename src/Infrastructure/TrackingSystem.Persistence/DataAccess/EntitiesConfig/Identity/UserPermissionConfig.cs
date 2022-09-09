@@ -8,7 +8,7 @@ namespace TrackingSystem.Persistence.DataAccess.EntitiesConfig.Identity
     {
         public void Configure(EntityTypeBuilder<UserPermissionEntity> builder)
         {
-            builder.ToTable("UserPermission", "identity");
+            builder.ToTable("UserPermission");
 
             builder.HasKey(c => new
             {

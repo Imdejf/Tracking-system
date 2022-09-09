@@ -9,6 +9,8 @@ using TrackingSystem.Infrastructure.Implementations.Common;
 using TrackingSystem.Infrastructure.Implementations.Notifications;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TrackingSystem.Application.Common.Interfaces.Manager;
+using TrackingSystem.Infrastructure.Implementations.Manager;
 
 namespace TrackingSystem.Infrastructure.DependencyInjection
 {
@@ -39,6 +41,7 @@ namespace TrackingSystem.Infrastructure.DependencyInjection
             services.AddTransient<IJwtGenerator, JwtGenerator>();
             services.AddTransient<ITokenGenerator, TokenGenerator>();
             services.AddTransient<INotificationHubClientWrapper, NotificationHubClientWrapper>();
+            services.AddTransient<IFileManager, FileManager>();
 
             services.AddSingleton<IUserIdsManager, UserIdsManager>();
             services.AddSingleton<INotificationHubClient, NotificationHubClient>();
