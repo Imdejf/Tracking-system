@@ -67,6 +67,11 @@ namespace TrackingSystem.Application.Features.CommonFeatures.AuthFeatures.Comman
 
                 //BackgroundJob.Enqueue(() => _emailSender.SendEmailConfirmationEmailAsync(registeredUser.Email, emailConfirmationToken, registeredUser.Id, EmailType.ConfirmAccount, cancellationToken));
 
+                foreach(var permission in registeredUser.UserPermissions)
+                {
+                    permission.User = null;
+                };
+
                 return registeredUser;
             }
         }

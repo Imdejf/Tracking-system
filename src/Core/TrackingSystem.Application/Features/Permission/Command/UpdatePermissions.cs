@@ -19,8 +19,11 @@ namespace TrackingSystem.Application.Features.ManagemenetFeatures.Permission.Com
             private readonly IUserManager _userManager;
             private readonly IUserPermissionManager _userPermission;
             private readonly IPermissionsMapper _permissionsMapper;
-            public Handler()
+            public Handler(IUserManager userManager, IUserPermissionManager userPermission, IPermissionsMapper permissionsMapper)
             {
+                _userManager = userManager;
+                _userPermission = userPermission;
+                _permissionsMapper = permissionsMapper;
             }
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)

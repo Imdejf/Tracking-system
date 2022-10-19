@@ -3,4 +3,8 @@
 https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Projects\TrackingSystem\src\Presentations\TrackingSystem.API\bin\Release\net6.0\publish\</_PublishTargetUrl>
+    <History>True|2022-09-09T19:06:37.6770943Z;</History>
+  </PropertyGroup>
 </Project>

@@ -14,7 +14,17 @@ namespace TrackingSystem.Shared.Maps
             },
             {
                 Profile.User,
-                System.Array.Empty<PermissionObject>()
+                new PermissionObject[]
+                {
+                    new(typeof(AuthServicePermissions).Name,AuthServicePermissions.ChangeOwnPassword.ToString(),(int)AuthServicePermissions.ChangeOwnPassword),
+                    new(typeof(AuthServicePermissions).Name,AuthServicePermissions.ChangePassword.ToString(),(int)AuthServicePermissions.ChangePassword),
+                    new(typeof(AuthServicePermissions).Name,AuthServicePermissions.ChangeRole.ToString(),(int)AuthServicePermissions.ChangeRole),
+                    new(typeof(AuthServicePermissions).Name,AuthServicePermissions.CreateUser.ToString(),(int)AuthServicePermissions.CreateUser),
+                    new(typeof(AuthServicePermissions).Name,AuthServicePermissions.DeleteUser.ToString(),(int)AuthServicePermissions.DeleteUser),
+                    new(typeof(AuthServicePermissions).Name,AuthServicePermissions.EditUser.ToString(),(int)AuthServicePermissions.EditUser),
+                    new(typeof(AuthServicePermissions).Name,AuthServicePermissions.ManagePermissions.ToString(),(int)AuthServicePermissions.ManagePermissions),
+                    new(typeof(AuthServicePermissions).Name,AuthServicePermissions.SetUserActiveOrDeactive.ToString(),(int)AuthServicePermissions.SetUserActiveOrDeactive),
+                }
             },
             {
                 Profile.Boss,
