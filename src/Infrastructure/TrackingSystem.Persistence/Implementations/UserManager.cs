@@ -54,7 +54,7 @@ namespace TrackingSystem.Persistence.Implementations.CommonRepositories
 
         public Task<UserEntity?> GetByIdAsync(Guid userId, CancellationToken cancellationToken)
         {
-            return _trackingSystemDbContext.Users.Where(c => c.Id == userId).FirstOrDefaultAsync(cancellationToken);
+            return _trackingSystemDbContext.Users.Include(c => c.UserPermissions).Where(c => c.Id == userId).FirstOrDefaultAsync(cancellationToken);
         }
 
         public Task<bool> IsEmailTakenAsync(string email, CancellationToken cancellationToken)
