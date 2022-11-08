@@ -15,8 +15,10 @@ namespace TrackingSystem.Application.Common.Interfaces.DataAccess.Service
         Task<IdentityActionResult> ConfirmEmailAsync(UserEntity user, string emailConfirmationToken, CancellationToken cancellationToken);
         Task RemoveAccountAsync(UserEntity user, CancellationToken cancellationToken);
         Task<UserEntity> GetByIdAsync(Guid userId, CancellationToken cancellationToken);
+        Task<List<UserEntity>> GetAlUser(Guid userId, CancellationToken cancellationToken);
         Task<UserEntity?> GetByEmailAsync(string email, CancellationToken cancellationToken);
         Task<UserEntity?> GetUserByMailOrNameAsync(string mailOrName, CancellationToken cancellationToken);
         Task<bool> IsInRoleAsync(Guid userId, string role, CancellationToken cancellationToken = default);
+        Task UpdateUserAsync(UserEntity user, CancellationToken cancellationToken);
     }
 }

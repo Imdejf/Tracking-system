@@ -57,6 +57,12 @@ namespace TrackingSystem.Persistence.Implementations.CommonRepositories
             return _trackingSystemDbContext.Users.Include(c => c.UserPermissions).Where(c => c.Id == userId).FirstOrDefaultAsync(cancellationToken);
         }
 
+        public async Task UpdateUserAsync(UserEntity user, CancellationToken cancellationToken)
+        {
+            _trackingSystemDbContext.Users.Update(user);
+            await _trackingSystemDbContext.SaveChangesAsync(cancellationToken);
+        }
+
         public Task<bool> IsEmailTakenAsync(string email, CancellationToken cancellationToken)
         {
             return _trackingSystemDbContext.Users.AnyAsync(c => EF.Functions.Like(c.Email, $"%{email}%"), cancellationToken);
@@ -120,6 +126,11 @@ namespace TrackingSystem.Persistence.Implementations.CommonRepositories
                 return IdentityActionResult.Failure(errors.ToArray());
             }
             return IdentityActionResult.Success();
+        }
+
+        public Task<List<UserEntity>> GetAlUser(Guid userId, CancellationToken cancellationToken)
+        {
+            return _trackingSystemDbContext.Users.Where(c => c.Id != userId).Include(c => c.UserPermissions).ToListAsync(cancellationToken);
         }
     }
 }

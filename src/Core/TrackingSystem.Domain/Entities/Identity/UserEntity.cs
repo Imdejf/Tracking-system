@@ -8,7 +8,7 @@ namespace TrackingSystem.Domain.Entities.Identity
     {
         public string FirstName { get; set; } = String.Empty;
         public string LastName { get; set; } = String.Empty;
-        public String Name { get; set; } = String.Empty;
+        public string Name { get; set; } = String.Empty;
         public string FilePath { get; set; } = String.Empty;
         public UserRegisterSource RegisterSource { get; set; }
         public DateTime CreatedDate { get; set; }
