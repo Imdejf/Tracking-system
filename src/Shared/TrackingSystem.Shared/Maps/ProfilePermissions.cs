@@ -24,6 +24,9 @@ namespace TrackingSystem.Shared.Maps
                     new(typeof(AuthServicePermissions).Name,AuthServicePermissions.EditUser.ToString(),(int)AuthServicePermissions.EditUser),
                     new(typeof(AuthServicePermissions).Name,AuthServicePermissions.ManagePermissions.ToString(),(int)AuthServicePermissions.ManagePermissions),
                     new(typeof(AuthServicePermissions).Name,AuthServicePermissions.SetUserActiveOrDeactive.ToString(),(int)AuthServicePermissions.SetUserActiveOrDeactive),
+                    new(typeof(TruckServicePermissions).Name, TruckServicePermissions.GetTruckByUserId.ToString(), (int)TruckServicePermissions.GetTruckByUserId),
+                    new(typeof(TruckServicePermissions).Name, TruckServicePermissions.GetTruckById.ToString(), (int)TruckServicePermissions.GetTruckById),
+
                 }
             },
             {
@@ -42,6 +45,12 @@ namespace TrackingSystem.Shared.Maps
                     new(typeof(AuthServicePermissions).Name,AuthServicePermissions.ViewManagementList.ToString(),(int)AuthServicePermissions.ViewManagementList),
                     new(typeof(AuthServicePermissions).Name,AuthServicePermissions.RevokePermission.ToString(),(int)AuthServicePermissions.RevokePermission),
                     new(typeof(AuthServicePermissions).Name,AuthServicePermissions.GrantPermission.ToString(),(int)AuthServicePermissions.GrantPermission),
+                    new(typeof(AuthServicePermissions).Name,AuthServicePermissions.SetUserActiveOrDeactive.ToString(),(int)AuthServicePermissions.SetUserActiveOrDeactive),
+                    new(typeof(TruckServicePermissions).Name, TruckServicePermissions.GetTruckByUserId.ToString(), (int)TruckServicePermissions.GetTruckByUserId),
+                    new(typeof(TruckServicePermissions).Name, TruckServicePermissions.GetTruckById.ToString(), (int)TruckServicePermissions.GetTruckById),
+                    new(typeof(TruckServicePermissions).Name, TruckServicePermissions.AddUserToTruck.ToString(), (int)TruckServicePermissions.AddUserToTruck),
+                    new(typeof(TruckServicePermissions).Name, TruckServicePermissions.RemoveUserFromTruck.ToString(), (int)TruckServicePermissions.RemoveUserFromTruck),
+
 
                 }
             },
