@@ -14,6 +14,7 @@ namespace TrackingSystem.Shared.Attributes
         public Type _PermissionDomainEnumType;
 
         public VerifyPermissionsAttribute(AuthServicePermissions requiredPermissions, PermissionValidationMethod method) : this(requiredPermissions.GetType(), (int)requiredPermissions, method) { }
+        public VerifyPermissionsAttribute(TruckServicePermissions requiredPermissions, PermissionValidationMethod method) : this(requiredPermissions.GetType(), (int)requiredPermissions, method) { }
 
         private VerifyPermissionsAttribute(Type type, int requiredPermissions, PermissionValidationMethod method)
         {

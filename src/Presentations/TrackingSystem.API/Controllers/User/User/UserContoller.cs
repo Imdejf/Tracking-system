@@ -9,9 +9,10 @@ namespace TrackingSystem.Api.Controllers.User.User
     [Route("api/User")]
     public class UserContoller : BaseApiController
     {
-        public UserContoller()
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public UserContoller(IHttpContextAccessor httpContextAccessor)
         {
-
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
@@ -23,6 +24,13 @@ namespace TrackingSystem.Api.Controllers.User.User
         }
 
         [HttpGet]
+        [Route("GetIp")]
+        public async Task<IActionResult> GetIp(CancellationToken cancellationToken)
+        {
+            return Ok(ApiResponse.Success(200, _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString()));
+        }
+
+        [HttpGet]
         [Route("GetUserList/{userId}")]
         public async Task<IActionResult> GetUserList(Guid userId, CancellationToken cancellationToken)
         {
@@ -30,7 +38,7 @@ namespace TrackingSystem.Api.Controllers.User.User
             return Ok(ApiResponse.Success(200, result));
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("UpdateUser")]
         public async Task<IActionResult> UpdateUser(UpdateUser.Command command, CancellationToken cancellationToken)
         {
@@ -45,6 +53,5 @@ namespace TrackingSystem.Api.Controllers.User.User
             var result = await Mediator.Send(new RemoveUser.Command(userId), cancellationToken);
             return Ok(ApiResponse.Success(200, result));
         }
-
     }
 }

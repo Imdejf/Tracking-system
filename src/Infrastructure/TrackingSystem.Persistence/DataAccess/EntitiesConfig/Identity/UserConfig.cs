@@ -27,6 +27,11 @@ namespace TrackingSystem.Persistence.DataAccess.EntitiesConfig.Identity
                    .WithOne(c => c.User)
                    .IsRequired(true)
                    .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(c => c.UserTrucks)
+                   .WithOne(c => c.User)
+                   .HasForeignKey(c => c.UserId)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

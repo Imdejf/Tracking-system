@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using TrackingSystem.Domain.Entities.Truck;
 using TrackingSystem.Domain.Enums;
 using TrackingSystem.Shared.Enums;
 
@@ -17,6 +18,7 @@ namespace TrackingSystem.Domain.Entities.Identity
         public Theme Theme { get; set; }
         public Profile ProfileType { get; set; }
         public ICollection<UserPermissionEntity> UserPermissions { get; set; }
+        public ICollection<UserTruckEntity> UserTrucks { get; set; }
 
     }
 }

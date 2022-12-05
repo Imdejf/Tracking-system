@@ -12,8 +12,4 @@
     <ProjectReference Include="..\TrackingSystem.Domain\TrackingSystem.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Common\Interfaces\DataAccess\Repository\" />
-  </ItemGroup>
-
 </Project>

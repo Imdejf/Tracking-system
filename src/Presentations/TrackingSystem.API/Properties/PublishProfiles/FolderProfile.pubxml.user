@@ -5,6 +5,6 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>D:\Projects\TrackingSystem\src\Presentations\TrackingSystem.API\bin\Release\net6.0\publish\</_PublishTargetUrl>
-    <History>True|2022-11-08T18:20:03.3802177Z;True|2022-10-28T14:40:17.2107080+02:00;True|2022-10-28T14:17:12.4993792+02:00;True|2022-10-19T20:01:26.3348904+02:00;True|2022-09-09T21:06:37.6770943+02:00;</History>
+    <History>True|2022-11-09T08:09:40.2677208Z;True|2022-11-08T19:20:03.3802177+01:00;True|2022-10-28T14:40:17.2107080+02:00;True|2022-10-28T14:17:12.4993792+02:00;True|2022-10-19T20:01:26.3348904+02:00;True|2022-09-09T21:06:37.6770943+02:00;</History>
   </PropertyGroup>
 </Project>

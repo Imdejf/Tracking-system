@@ -25,11 +25,13 @@ namespace TrackingSystem.API
         {
             services.AddCors();
             services.AddSignalR();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddSharedServices(_Configuration);
             services.AddAppServices(_Configuration);
             services.AddPersistenceService(_Configuration);
             services.AddPermissionsStorage();
+            services.AddBackgroundWorker();
             services.AddHangfire(_Configuration.GetConnectionString("Hangfire"));
 
             services.AddSwaggerDocumentation();

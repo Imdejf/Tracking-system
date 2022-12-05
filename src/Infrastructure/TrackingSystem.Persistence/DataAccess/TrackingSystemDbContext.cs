@@ -1,9 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using JustCommerce.Persistence.DataAccess.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Reflection;
 using TrackingSystem.Application.Common.Interfaces.DataAccess;
+using TrackingSystem.Application.Common.Interfaces.DataAccess.Repository;
 using TrackingSystem.Domain.Entities.Abstract;
 using TrackingSystem.Domain.Entities.Identity;
+using TrackingSystem.Domain.Entities.Truck;
 using TrackingSystem.Shared.Services.Interfaces;
 
 namespace TrackingSystem.Persistence.DataAccess
@@ -19,11 +22,17 @@ namespace TrackingSystem.Persistence.DataAccess
 
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<UserPermissionEntity> UserPermission { get; set; }
+        public DbSet<TruckDetailsEntity> _TruckDetails { get; set; }
+        public DbSet<TruckEntity> _Trucks { get; set; }
+        public DbSet<UserTruckEntity> _UserTrucks { get; set; }
+
+        public ITruckRepository Trucks => new TruckRepository(_Trucks, _UserTrucks);
+        public ITruckDetailsRepository TruckDetails => new TruckDetailsRepository(_TruckDetails);
 
 
         //Repository
 
-        
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
