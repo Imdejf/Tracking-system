@@ -6,5 +6,6 @@ namespace TrackingSystem.Application.Common.Interfaces.DataAccess.Repository
     {
         Task<TruckDetailsEntity> GetById(int truckId, CancellationToken cancellationToken);
         void AttachedTruckDetails(Guid truckId);
+        Task<List<TruckDetailsEntity>> GetAllActive(CancellationToken cancellationToken);
     }
 }

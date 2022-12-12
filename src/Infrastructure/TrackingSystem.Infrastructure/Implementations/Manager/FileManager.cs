@@ -27,7 +27,7 @@ namespace TrackingSystem.Infrastructure.Implementations.Manager
             var basePath = Directory.GetCurrentDirectory() + @"\wwwroot";
             basePath += path;
 
-            if (!Directory.Exists(basePath))
+            if (!File.Exists(basePath))
             {
                 return false;
             }
@@ -46,7 +46,7 @@ namespace TrackingSystem.Infrastructure.Implementations.Manager
 
             path += $@"\{fileName}.{file.FileExtension}";
             System.IO.File.WriteAllBytes(path, Convert.FromBase64String(file.Base64String));
-            path = path.ToString().Split(@"\wwwroot")[1];
+            path = path.ToString().Split(@"\wwwroot").Last();
 
             return path;
         }

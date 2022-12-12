@@ -5,6 +5,7 @@ using System.Reflection;
 using TrackingSystem.Application.Common.Interfaces.DataAccess;
 using TrackingSystem.Application.Common.Interfaces.DataAccess.Repository;
 using TrackingSystem.Domain.Entities.Abstract;
+using TrackingSystem.Domain.Entities.Events;
 using TrackingSystem.Domain.Entities.Identity;
 using TrackingSystem.Domain.Entities.Truck;
 using TrackingSystem.Shared.Services.Interfaces;
@@ -25,9 +26,11 @@ namespace TrackingSystem.Persistence.DataAccess
         public DbSet<TruckDetailsEntity> _TruckDetails { get; set; }
         public DbSet<TruckEntity> _Trucks { get; set; }
         public DbSet<UserTruckEntity> _UserTrucks { get; set; }
+        public DbSet<EventEntity> _Events { get; set; }
 
         public ITruckRepository Trucks => new TruckRepository(_Trucks, _UserTrucks);
         public ITruckDetailsRepository TruckDetails => new TruckDetailsRepository(_TruckDetails);
+        public IEventRepository Event => new EventRepository(_Events);
 
 
         //Repository

@@ -19,5 +19,10 @@ namespace JustCommerce.Persistence.DataAccess.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public Task<List<TruckDetailsEntity>> GetAllActive(CancellationToken cancellationToken) 
+        {
+            return _Entities.Where(c => c.IgnitionState == true).Include(c => c.Truck).ToListAsync(cancellationToken);
+        }
     }
 }

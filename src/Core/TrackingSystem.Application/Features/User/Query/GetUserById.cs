@@ -1,14 +1,6 @@
-﻿using FluentValidation;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using TrackingSystem.Application.Common.Interfaces.DataAccess;
+﻿using MediatR;
 using TrackingSystem.Application.Common.Interfaces.DataAccess.Service;
-using TrackingSystem.Domain.Entities.Identity;
+using TrackingSystem.Application.Features.User.Dto;
 using TrackingSystem.Shared.Exceptions;
 
 namespace TrackingSystem.Application.Features.User.Query
@@ -16,8 +8,8 @@ namespace TrackingSystem.Application.Features.User.Query
     public static class GetUserById
     {
 
-        public sealed record Query(Guid UserId) : IRequest<UserEntity>;
-        public sealed class Handler : IRequestHandler<Query, UserEntity>
+        public sealed record Query(Guid UserId) : IRequest<UserDto>;
+        public sealed class Handler : IRequestHandler<Query, UserDto>
         {
             private readonly IUserManager _UserManager;
             public Handler(IUserManager userManager)
@@ -25,7 +17,7 @@ namespace TrackingSystem.Application.Features.User.Query
                 _UserManager = userManager;
             }
 
-            public async Task<UserEntity> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<UserDto> Handle(Query request, CancellationToken cancellationToken)
             {
                 var userExists = await _UserManager.ExistsAsync(request.UserId, cancellationToken);
                 if (!userExists)
@@ -40,7 +32,7 @@ namespace TrackingSystem.Application.Features.User.Query
                     entity.User = null;
                 }
 
-                return user;
+                return UserDto.CreateFromEntity(user);
             }
         }
     }

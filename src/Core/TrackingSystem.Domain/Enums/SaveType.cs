@@ -3,5 +3,6 @@
     public enum SaveType
     {
         User = 0,
+        EventFile = 1,
     }
 }

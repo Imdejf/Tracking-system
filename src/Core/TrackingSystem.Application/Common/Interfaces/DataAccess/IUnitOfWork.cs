@@ -7,6 +7,7 @@ namespace TrackingSystem.Application.Common.Interfaces.DataAccess
     {
         ITruckRepository Trucks { get; }
         ITruckDetailsRepository TruckDetails { get; }
+        IEventRepository Event { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrackingSystem.Persistence.DataAccess;
 
@@ -10,9 +11,10 @@ using TrackingSystem.Persistence.DataAccess;
 namespace JustCommerce.Persistence.Migrations
 {
     [DbContext(typeof(TrackingSystemDbContext))]
-    partial class TrackingSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221212084206_AddUserEventRelation")]
+    partial class AddUserEventRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -286,15 +288,9 @@ namespace JustCommerce.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("char(36)");
-
                     b.HasKey("TruckId");
 
                     b.HasIndex("TruckId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Truck", (string)null);
                 });
@@ -358,15 +354,6 @@ namespace JustCommerce.Persistence.Migrations
                     b.Navigation("Truck");
                 });
 
-            modelBuilder.Entity("TrackingSystem.Domain.Entities.Truck.TruckEntity", b =>
-                {
-                    b.HasOne("TrackingSystem.Domain.Entities.Identity.UserEntity", "User")
-                        .WithOne("Truck")
-                        .HasForeignKey("TrackingSystem.Domain.Entities.Truck.TruckEntity", "UserId");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("TrackingSystem.Domain.Entities.Truck.UserTruckEntity", b =>
                 {
                     b.HasOne("TrackingSystem.Domain.Entities.Truck.TruckEntity", "Truck")
@@ -394,9 +381,6 @@ namespace JustCommerce.Persistence.Migrations
             modelBuilder.Entity("TrackingSystem.Domain.Entities.Identity.UserEntity", b =>
                 {
                     b.Navigation("Events");
-
-                    b.Navigation("Truck")
-                        .IsRequired();
 
                     b.Navigation("UserPermissions");
 

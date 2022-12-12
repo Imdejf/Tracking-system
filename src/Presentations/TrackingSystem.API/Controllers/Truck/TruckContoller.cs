@@ -26,25 +26,29 @@ namespace TrackingSystem.Api.Controllers.Truck
         [Route("ById/{truckId}")]
         public async Task<IActionResult> GetTruckById(int truckId)
         {
-            return Ok(ApiResponse.Success(200, new GetTruckById.Query(truckId)));
+            var result = await Mediator.Send(new GetTruckById.Query(truckId));
+            return Ok(ApiResponse.Success(200, result));
         }
 
         [HttpGet]
         [Authorize]
-        [VerifyPermissions(TruckServicePermissions.GetAllTruck, PermissionValidationMethod.HasAll)]
-        [Route("")]
-        public async Task<IActionResult> GetAllTruck()
+        //[VerifyPermissions(TruckServicePermissions.GetTruckById, PermissionValidationMethod.HasAll)]
+        [Route("ActiveTruck")]
+        public async Task<IActionResult> GetAllActiveTruck()
         {
-            return Ok(ApiResponse.Success(200, new GetTruck.Query()));
+            var result = await Mediator.Send(new GetActiveTruck.Query());
+            return Ok(ApiResponse.Success(200, result));
         }
 
+
         [HttpGet]
-        [Authorize]
-        [VerifyPermissions(TruckServicePermissions.GetTruckByUserId, PermissionValidationMethod.HasAll)]
+        //[Authorize]
+        //[VerifyPermissions(TruckServicePermissions.GetTruckByUserId, PermissionValidationMethod.HasAll)]
         [Route("{userId}")]
         public async Task<IActionResult> GetTruckByUserId(Guid userId)
         {
-            return Ok(ApiResponse.Success(200, new GetTruckByUserId.Query(userId)));
+            var result = await Mediator.Send(new GetTruckByUserId.Query(userId));
+            return Ok(ApiResponse.Success(200, result));
         }
 
         [HttpPost]
@@ -53,7 +57,8 @@ namespace TrackingSystem.Api.Controllers.Truck
         [Route("")]
         public async Task<IActionResult> AddUserToTruck(Guid userId, int truckId)
         {
-            return Ok(ApiResponse.Success(200, new AddUserToTruck.Command(userId, truckId)));
+            var result = await Mediator.Send(new AddUserToTruck.Command(userId, truckId));
+            return Ok(ApiResponse.Success(200, result));
         }
 
         [HttpDelete]
@@ -62,7 +67,8 @@ namespace TrackingSystem.Api.Controllers.Truck
         [Route("")]
         public async Task<IActionResult> RemoveUserFromTruck(Guid userId, int truckId)
         {
-            return Ok(ApiResponse.Success(200, new RemoveUserFromTruck.Command(userId, truckId)));
+            var result = await Mediator.Send(new RemoveUserFromTruck.Command(userId, truckId));
+            return Ok(ApiResponse.Success(200, result));
         }
     }
 }

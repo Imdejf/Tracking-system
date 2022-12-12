@@ -1,4 +1,5 @@
-﻿using TrackingSystem.Domain.Entities.Truck;
+﻿using TrackingSystem.Application.Features.User.Dto;
+using TrackingSystem.Domain.Entities.Truck;
 
 namespace TrackingSystem.Application.Features.Truck.Query.Dto
 {
@@ -8,6 +9,7 @@ namespace TrackingSystem.Application.Features.Truck.Query.Dto
         public int TruckId { get; set; }
         public string RegisterNumber { get; set; }
         public TruckDetailsDto TruckDetails { get; set; }
+        public UserDto User { get; set; }
 
         public static TruckDto CreateFromEntity(TruckEntity entity)
         {
@@ -16,6 +18,15 @@ namespace TrackingSystem.Application.Features.Truck.Query.Dto
                 Id = entity.Id,
                 TruckId = entity.TruckId,
                 RegisterNumber = entity.RegisterNumber,
+                User = new UserDto
+                {
+                    Id = entity.User.Id,
+                    FirstName = entity.User.FirstName,
+                    LastName = entity.User.LastName,
+                    FilePath = entity.User.FilePath,
+                    Name = entity.User.Name,
+                    Language = entity.User.Language,
+                },
                 TruckDetails = new TruckDetailsDto
                 {
                     LastLocalizationDate = entity.TruckDetails.LastLocalizationDate,
@@ -25,7 +36,7 @@ namespace TrackingSystem.Application.Features.Truck.Query.Dto
                     LastLongitude = entity.TruckDetails.LastLongitude,
                     Speed = entity.TruckDetails.Speed,
                     TruckId = entity.TruckDetails.TruckId,
-                }
+                },
             };
         }
     }

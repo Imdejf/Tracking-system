@@ -37,7 +37,7 @@ namespace TrackingSystem.Infrastructure.BackgroundWorker
             {
                 try
                 {
-                    await Task.Delay(60, stoppingToken);
+                    await Task.Delay(90000, stoppingToken);
 
                     HttpClient client = new HttpClient();
 

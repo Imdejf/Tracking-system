@@ -32,6 +32,10 @@ namespace TrackingSystem.Persistence.DataAccess.EntitiesConfig.Identity
                    .WithOne(c => c.User)
                    .HasForeignKey(c => c.UserId)
                    .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(c => c.Events)
+                   .WithOne(c => c.User)
+                   .HasForeignKey(c => c.UserId);
         }
     }
 }

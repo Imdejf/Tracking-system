@@ -1,18 +1,15 @@
 ﻿using FluentValidation;
-using Hangfire;
-using TrackingSystem.Application.Common.Interfaces;
-using TrackingSystem.Application.Common.Exceptions;
 using TrackingSystem.Application.Common.Extension;
 using TrackingSystem.Application.Common.Factories.EntitiesFactories.User;
 using TrackingSystem.Application.Common.Interfaces;
 using TrackingSystem.Application.Common.Interfaces.DataAccess.Service;
+using TrackingSystem.Application.Common.Interfaces.Manager;
 using TrackingSystem.Domain.Entities.Identity;
 using TrackingSystem.Domain.Enums;
 using TrackingSystem.Shared.Enums;
 using TrackingSystem.Shared.Exceptions;
-using TrackingSystem.Shared.Services.Interfaces.Permission;
-using TrackingSystem.Application.Common.Interfaces.Manager;
 using TrackingSystem.Shared.Models;
+using TrackingSystem.Shared.Services.Interfaces.Permission;
 
 namespace TrackingSystem.Application.Features.CommonFeatures.AuthFeatures.Command
 {
@@ -47,7 +44,7 @@ namespace TrackingSystem.Application.Features.CommonFeatures.AuthFeatures.Comman
                 string ftpPhoto = String.Empty;
                 if (request.PhotoFile != null)
                 {
-                    ftpPhoto = _fileManager.SaveFile(SaveType.User, request.FirstName+request.LastName,request.PhotoFile);
+                    ftpPhoto = _fileManager.SaveFile(SaveType.User, Guid.NewGuid().ToString(),request.PhotoFile);
                 }
 
                 var newUser = UserEntityFacotry.CreateFromRegisterCommand(request);
