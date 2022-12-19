@@ -61,6 +61,16 @@ namespace TrackingSystem.Api.Controllers.Truck
             return Ok(ApiResponse.Success(200, result));
         }
 
+
+        [HttpPut]
+        //[Authorize]
+        [Route("/trucker")]
+        public async Task<IActionResult> AddTrucker(Guid userId, int truckId)
+        {
+            var result = await Mediator.Send(new AddTrucker.Command(userId, truckId));
+            return Ok(ApiResponse.Success(200, result));
+        }
+
         [HttpDelete]
         [Authorize]
         [VerifyPermissions(TruckServicePermissions.RemoveUserFromTruck, PermissionValidationMethod.HasAll)]

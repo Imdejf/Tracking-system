@@ -51,6 +51,13 @@ namespace TrackingSystem.Application.Features.Event.Command
 					throw new EntityNotFoundException($"User with id {request.UserId} doesnt exist");
 				}
 
+				var truck = await _unitOfWork.Trucks.GetTruckById(user.Truck.TruckId, cancellationToken);
+
+				if (truck is null)
+				{
+					throw new EntityNotFoundException($"Trcuk with id {truck.Id} doesnt exist");
+				}
+
 				var newEvent = new EventEntity
 				{
 					Description = request.Description,
@@ -58,6 +65,8 @@ namespace TrackingSystem.Application.Features.Event.Command
 					EndDate = request.EndDate,
 					CreatedBy = user.Name,
 					StartDate = request.StartDate,
+					Latitude = truck.TruckDetails.LastLatitude,
+					Longitude = truck.TruckDetails.LastLongitude,
 					Number = request.Number,
 					Title = request.Title,
 					UserId = request.UserId,

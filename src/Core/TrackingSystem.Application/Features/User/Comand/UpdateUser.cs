@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
+using System.IO;
 using TrackingSystem.Application.Common.Interfaces.DataAccess.Service;
 using TrackingSystem.Application.Common.Interfaces.Manager;
 using TrackingSystem.Domain.Enums;
@@ -11,7 +12,7 @@ namespace TrackingSystem.Application.Features.User.Comand
     public static class UpdateUser
     {
 
-        public sealed record Command(Guid UserId, string FirstName, string LastName, Theme Theme, Base64File? Base64File) : IRequest<Unit>;
+        public sealed record Command(Guid UserId, string FirstName, string LastName, Theme Theme, Base64File? Base64File, bool RemovePhoto) : IRequest<Unit>;
 
         public sealed class Handler : IRequestHandler<Command, Unit>
         {
@@ -32,7 +33,16 @@ namespace TrackingSystem.Application.Features.User.Comand
                     throw new EntityNotFoundException($"User with id: {request.UserId} doesnt exist");
                 }
 
-                if(request.Base64File != null)
+                if (request.RemovePhoto)
+                {
+                    if (_fileManager.ExistFile(user.FilePath) && !String.IsNullOrEmpty(user.FilePath))
+                    {
+                        _fileManager.DeleteFile(user.FilePath);
+                    }
+                    user.FilePath = "";
+                }
+
+                if (request.Base64File != null)
                 {
                     if (_fileManager.ExistFile(user.FilePath) && !String.IsNullOrEmpty(user.FilePath))
                     {

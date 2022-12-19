@@ -13,20 +13,11 @@ namespace TrackingSystem.Application.Features.Truck.Query.Dto
 
         public static TruckDto CreateFromEntity(TruckEntity entity)
         {
-            return new TruckDto
+            var truckDto = new TruckDto
             {
                 Id = entity.Id,
                 TruckId = entity.TruckId,
                 RegisterNumber = entity.RegisterNumber,
-                User = new UserDto
-                {
-                    Id = entity.User.Id,
-                    FirstName = entity.User.FirstName,
-                    LastName = entity.User.LastName,
-                    FilePath = entity.User.FilePath,
-                    Name = entity.User.Name,
-                    Language = entity.User.Language,
-                },
                 TruckDetails = new TruckDetailsDto
                 {
                     LastLocalizationDate = entity.TruckDetails.LastLocalizationDate,
@@ -38,6 +29,21 @@ namespace TrackingSystem.Application.Features.Truck.Query.Dto
                     TruckId = entity.TruckDetails.TruckId,
                 },
             };
+
+            if(entity.User != null)
+            {
+                truckDto.User = new UserDto
+                {
+                    Id = entity.User.Id,
+                    FirstName = entity.User.FirstName,
+                    LastName = entity.User.LastName,
+                    FilePath = entity.User.FilePath,
+                    Name = entity.User.Name,
+                    Language = entity.User.Language,
+                };
+            }
+
+            return truckDto;
         }
     }
 }

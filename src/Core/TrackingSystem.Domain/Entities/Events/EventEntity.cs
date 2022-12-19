@@ -10,6 +10,8 @@ namespace TrackingSystem.Domain.Entities.Events
         public string Title { get; set; }
         public string Description { get; set; }
         public string Number { get; set; }
+        public decimal Latitude { get; set; }
+        public decimal Longitude { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public EventType EventType { get; set; }

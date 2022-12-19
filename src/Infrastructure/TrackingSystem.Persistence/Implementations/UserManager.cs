@@ -54,7 +54,7 @@ namespace TrackingSystem.Persistence.Implementations.CommonRepositories
 
         public Task<UserEntity?> GetByIdAsync(Guid userId, CancellationToken cancellationToken)
         {
-            return _trackingSystemDbContext.Users.Include(c => c.UserPermissions).Where(c => c.Id == userId).FirstOrDefaultAsync(cancellationToken);
+            return _trackingSystemDbContext.Users.Include(c => c.UserPermissions).Include(c => c.Truck).Where(c => c.Id == userId).FirstOrDefaultAsync(cancellationToken);
         }
 
         public async Task UpdateUserAsync(UserEntity user, CancellationToken cancellationToken)

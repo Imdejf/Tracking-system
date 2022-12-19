@@ -51,6 +51,7 @@ namespace TrackingSystem.Application.Features.CommonFeatures.AuthFeatures.Comman
                 newUser.FilePath = ftpPhoto;
                 newUser.Theme = Theme.Light;
                 newUser.EmailConfirmed = true;
+                newUser.ProfileType = request.Profile;
 
                 newUser.UserPermissions = _permissionsMapper.GetPermissionsByProfile(request.Profile)
                                                    .Select(c => UserPermissionEntityFactory.CreateFromData(c.PermissionDomainName, c.PermissionFlagValue, newUser.Id))

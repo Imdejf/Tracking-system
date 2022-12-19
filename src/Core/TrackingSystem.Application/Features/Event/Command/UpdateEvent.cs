@@ -28,6 +28,12 @@ namespace TrackingSystem.Application.Features.Event.Command
                 public string FileName { get; set; }
                 public Base64File Base64File { get; set; }
             }
+            public ICollection<FileToRemove>? FileToRemoves { get; set; }
+
+            public record FileToRemove
+            {
+                public string RemovePath { get; set; }
+            }
         }
 
 		public sealed class Handler : IRequestHandler<Command, Unit>
@@ -57,6 +63,20 @@ namespace TrackingSystem.Application.Features.Event.Command
                 if (currentEvent is null)
                 {
                     throw new EntityNotFoundException($"Event with id {request.UserId} doesnt exist");
+                }
+
+                if(request.FileToRemoves != null)
+                {
+                    foreach(var file in request.FileToRemoves)
+                    {
+                        foreach(var currentFile in currentEvent.EventFiles)
+                        {
+                            if(file.RemovePath == currentFile.FilePath)
+                            {
+                                _fileManager.DeleteFile(file.RemovePath);
+                            }
+                        }
+                    }
                 }
 
                 currentEvent.StartDate = request.StartDate;
