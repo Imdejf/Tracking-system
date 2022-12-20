@@ -34,7 +34,15 @@ namespace TrackingSystem.Application.Features.Truck.Command
 
 				truck.UserId = request.UserId;
 
+				try
+				{
 				await _unitOfWork.SaveChangesAsync();
+
+				}
+				catch(Exception ex)
+				{
+					throw new Exception(ex.InnerException.Message);
+				}
 
 				return Unit.Value;
 			}

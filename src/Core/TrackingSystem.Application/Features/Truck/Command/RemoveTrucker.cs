@@ -1,13 +1,19 @@
 ﻿using FluentValidation;
 using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using TrackingSystem.Application.Common.Interfaces.DataAccess;
 
 namespace TrackingSystem.Application.Features.Truck.Command
 {
-	public static class RemoveUserFromTruck
+    public static class RemoveTrucker
     {
 
-		public sealed record Command(Guid UserId, int TruckId) : IRequest<Unit>;
+		public sealed record Command(int TruckId) : IRequest<Unit>;
 
 		public sealed class Handler : IRequestHandler<Command, Unit>
 		{
@@ -19,9 +25,12 @@ namespace TrackingSystem.Application.Features.Truck.Command
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
 			{
-				 _unitOfWork.Trucks.RemoveUserFromTruck(request.UserId, request.TruckId);
+				var truck = await _unitOfWork.Trucks.GetTruckById(request.TruckId, cancellationToken);
+
+				truck.UserId = null;
 
 				await _unitOfWork.SaveChangesAsync(cancellationToken);
+
 				return Unit.Value;
 			}
 		}

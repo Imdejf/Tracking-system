@@ -21,6 +21,8 @@ namespace TrackingSystem.Application.Features.Truck.Command
 			{
 				await _unitOfWork.Trucks.AddUserToTruck(request.UserId, request.TruckId, cancellationToken);
 
+				await _unitOfWork.SaveChangesAsync(cancellationToken);
+
 				return Unit.Value;
 			}
 		}

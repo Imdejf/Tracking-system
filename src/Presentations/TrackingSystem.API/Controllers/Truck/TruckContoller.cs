@@ -52,8 +52,8 @@ namespace TrackingSystem.Api.Controllers.Truck
         }
 
         [HttpPost]
-        [Authorize]
-        [VerifyPermissions(TruckServicePermissions.AddUserToTruck, PermissionValidationMethod.HasAll)]
+        //[Authorize]
+        //[VerifyPermissions(TruckServicePermissions.AddUserToTruck, PermissionValidationMethod.HasAll)]
         [Route("")]
         public async Task<IActionResult> AddUserToTruck(Guid userId, int truckId)
         {
@@ -64,7 +64,7 @@ namespace TrackingSystem.Api.Controllers.Truck
 
         [HttpPut]
         //[Authorize]
-        [Route("/trucker")]
+        [Route("trucker")]
         public async Task<IActionResult> AddTrucker(Guid userId, int truckId)
         {
             var result = await Mediator.Send(new AddTrucker.Command(userId, truckId));
@@ -72,8 +72,17 @@ namespace TrackingSystem.Api.Controllers.Truck
         }
 
         [HttpDelete]
-        [Authorize]
-        [VerifyPermissions(TruckServicePermissions.RemoveUserFromTruck, PermissionValidationMethod.HasAll)]
+        //[Authorize]
+        [Route("trucker")]
+        public async Task<IActionResult> RemoveTrucker(int truckId)
+        {
+            var result = await Mediator.Send(new RemoveTrucker.Command(truckId));
+            return Ok(ApiResponse.Success(200, result));
+        }
+
+        [HttpDelete]
+        //[Authorize]
+        //[VerifyPermissions(TruckServicePermissions.RemoveUserFromTruck, PermissionValidationMethod.HasAll)]
         [Route("")]
         public async Task<IActionResult> RemoveUserFromTruck(Guid userId, int truckId)
         {
