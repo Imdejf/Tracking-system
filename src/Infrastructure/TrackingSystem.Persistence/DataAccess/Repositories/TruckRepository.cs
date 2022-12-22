@@ -28,6 +28,7 @@ namespace JustCommerce.Persistence.DataAccess.Repositories
             return _Entities.Include(c => c.UserTrucks)
                             .ThenInclude(c => c.User)
                             .Include(c => c.TruckDetails)
+                            .Include(c => c.User)
                             .ToListAsync(cancellationToken);
         }
 
@@ -42,6 +43,9 @@ namespace JustCommerce.Persistence.DataAccess.Repositories
         {
             return _userTrucks.Where(c => c.UserId == userId)
                               .Include(c => c.Truck)
+                              .ThenInclude(c => c.TruckDetails)
+                              .Include(c => c.Truck)
+                              .ThenInclude(c => c.User)
                               .ToListAsync(cancellationToken);
         }
 

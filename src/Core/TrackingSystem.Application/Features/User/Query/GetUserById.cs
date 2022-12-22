@@ -32,6 +32,12 @@ namespace TrackingSystem.Application.Features.User.Query
                     entity.User = null;
                 }
 
+                foreach(var truck in user.UserTrucks)
+                {
+                    truck.Truck = null;
+                    truck.User = null;
+                }
+
                 return UserDto.CreateFromEntity(user);
             }
         }

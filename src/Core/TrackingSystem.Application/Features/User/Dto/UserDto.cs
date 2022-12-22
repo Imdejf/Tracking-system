@@ -18,12 +18,13 @@ namespace TrackingSystem.Application.Features.User.Dto
         public Domain.Enums.Language Language { get; set; }
         public Theme Theme { get; set; }
         public string ProfileType { get; set; }
+        public TruckEntity Truck { get; set; }
         public ICollection<UserPermissionEntity> UserPermissions { get; set; }
         public ICollection<UserTruckEntity> UserTrucks { get; set; }
 
         public static UserDto CreateFromEntity(UserEntity entity)
         {
-            return new UserDto
+            var user =  new UserDto
             {
                 Id = entity.Id,
                 Name = entity.Name,
@@ -38,7 +39,23 @@ namespace TrackingSystem.Application.Features.User.Dto
                 Theme = entity.Theme,
                 UserTrucks = entity.UserTrucks,
                 UserPermissions = entity.UserPermissions,
+
             };
+            if (entity.Truck != null)
+            {
+                user.Truck = new TruckEntity
+                {
+                    Id = entity.Truck.Id,
+                    TruckId = entity.Truck.TruckId,
+                    UserId = entity.Truck.UserId,
+                    RegisterNumber = entity.Truck.RegisterNumber,
+                    CreatedBy = entity.Truck.CreatedBy,
+                    CreatedDate = entity.Truck.CreatedDate,
+                    LastModifiedDate = entity.Truck.LastModifiedDate
+                };
+            }
+
+            return user;
         }
     }
 }
