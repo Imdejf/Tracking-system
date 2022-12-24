@@ -20,5 +20,7 @@ namespace TrackingSystem.Application.Common.Interfaces.DataAccess.Service
         Task<UserEntity?> GetUserByMailOrNameAsync(string mailOrName, CancellationToken cancellationToken);
         Task<bool> IsInRoleAsync(Guid userId, string role, CancellationToken cancellationToken = default);
         Task UpdateUserAsync(UserEntity user, CancellationToken cancellationToken);
+        Task<IdentityActionResult> ChangePasswordByAdminAsync(UserEntity user, string password, CancellationToken cancellationToken);
+
     }
 }

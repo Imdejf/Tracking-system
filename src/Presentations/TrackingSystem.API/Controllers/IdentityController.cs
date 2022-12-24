@@ -114,7 +114,7 @@ namespace TrackingSystem.Api.Controllers
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize]
+        [AllowAnonymous]
         [Route("RemoveAccount")]
         public async Task<IActionResult> RemoveAccount(RemoveAccount.Command command, CancellationToken cancellationToken)
         {

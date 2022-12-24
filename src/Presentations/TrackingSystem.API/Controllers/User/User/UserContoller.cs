@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TrackingSystem.Application.Features.AuthFeatures.Command;
 using TrackingSystem.Application.Features.User.Comand;
 using TrackingSystem.Application.Features.User.Query;
 using TrackingSystem.Shared.Abstract;
@@ -41,6 +42,14 @@ namespace TrackingSystem.Api.Controllers.User.User
         [HttpPut]
         [Route("UpdateUser")]
         public async Task<IActionResult> UpdateUser(UpdateUser.Command command, CancellationToken cancellationToken)
+        {
+            var result = await Mediator.Send(command, cancellationToken);
+            return Ok(ApiResponse.Success(200, result));
+        }
+
+        [HttpPut]
+        [Route("ChangePasswordByAdmin")]
+        public async Task<IActionResult> UpdateUser(ChangePasswordByAdmin.Command command, CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(command, cancellationToken);
             return Ok(ApiResponse.Success(200, result));

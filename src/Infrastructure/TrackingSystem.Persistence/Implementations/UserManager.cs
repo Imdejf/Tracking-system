@@ -38,6 +38,13 @@ namespace TrackingSystem.Persistence.Implementations.CommonRepositories
             return _trackingSystemDbContext.Users.AnyAsync(c => c.Id == id, cancellationToken);
         }
 
+        public async Task<IdentityActionResult> ChangePasswordByAdminAsync(UserEntity user, string password, CancellationToken cancellationToken)
+        {
+            var passwordResetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var result = await _userManager.ResetPasswordAsync(user, passwordResetToken, password);
+            return mapIdentityResult(result);
+        }
+
         public Task<UserEntity?> GetByEmailAsync(string email, CancellationToken cancellationToken)
         {
             return _trackingSystemDbContext.Users.Where(c => EF.Functions.Like(c.Email, $"%{email}%")).FirstOrDefaultAsync(cancellationToken);
